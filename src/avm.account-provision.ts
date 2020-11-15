@@ -5,7 +5,7 @@ interface AccountProvisionResponse {
   body: string;
 }
 
-const accountProvision: Handler = (event: any, context: Context, callback: Callback) => {
+const accountProvision: Handler = (event: any, _context: Context, callback: Callback) => {
   console.log({ event });
 
   const response: AccountProvisionResponse = {

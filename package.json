@@ -19,6 +19,7 @@
     "compile": "true",
     "build": "yarn run test && yarn run compile && yarn run synth",
     "eslint": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test",
+    "docgen": "typedoc --out docs/",
     "cdk": "cdk",
     "synth": "cdk synth",
     "deploy": "cdk deploy",
@@ -47,6 +48,7 @@
     "standard-version": "^9.0.0",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
+    "typedoc": "^0.17.8",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {},
@@ -61,7 +63,8 @@
     "@aws-cdk/aws-stepfunctions-tasks": "^1.73.0",
     "@aws-cdk/core": "^1.73.0",
     "@aws-cdk/custom-resources": "^1.73.0",
-    "aws-lambda": "^1.0.6"
+    "aws-lambda": "^1.0.6",
+    "aws-sdk": "^2.792.0"
   },
   "bundledDependencies": [],
   "keywords": [],
@@ -120,6 +123,11 @@
       "desc": "Runs eslint against the codebase",
       "command": "yarn run eslint",
       "category": 1
+    },
+    "docgen": {
+      "desc": "Generate TypeScript API reference docs/",
+      "command": "yarn run docgen",
+      "category": 2
     },
     "synth": {
       "desc": "Synthesizes your cdk app into cdk.out (part of \"yarn build\")",

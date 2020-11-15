@@ -1,21 +1,25 @@
 import { Handler, Context, Callback } from 'aws-lambda';
+import * as AWS from 'aws-sdk';
 
-interface AccountCreateResponse {
-  statusCode: number;
-  body: string;
-}
-
-const accountCreate: Handler = (event: any, context: Context, callback: Callback) => {
+const handler: Handler = (event: any, _context: Context, _callback: Callback) => {
   console.log({ event });
 
-  const response: AccountCreateResponse = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'hooray!',
-    }),
+  // XXX: AWS organizations only has endpoints in us-east-1
+  // XXX: https://docs.aws.amazon.com/general/latest/gr/ao.html
+  const org: AWS.Organizations = new AWS.Organizations({ region: 'us-east-1' });
+
+  const params: AWS.Organizations.CreateAccountRequest = {
+    AccountName: event.AccountName,
+    Email: event.Email,
   };
 
-  callback(undefined, response);
+  org.createAccount(params, function (err, data) {
+    if (err) {
+      console.log(err, err.stack);
+    } else {
+      console.log(data);
+    }
+  });
 };
 
-export { accountCreate };
+export { handler };

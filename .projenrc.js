@@ -8,7 +8,9 @@ const project = new AwsCdkTypeScriptApp({
   repository: "https://github.com/p6m7g8/p6-account-vending-machine.git",
 
   appEntrypoint: "avm.ts",
+  docgen: true,
 
+  codeCov: true,
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
   cdkDependencies: [
@@ -30,9 +32,8 @@ const project = new AwsCdkTypeScriptApp({
 
   deps: [
     'aws-lambda',
+    'aws-sdk',
   ],
-
-  codeCov: true,
 
   /* AwsCdkTypeScriptAppOptions */
   // appEntrypoint: "main.ts",                                                 /* The CDK app's entrypoint (relative to the source directory, which is "src" by default). */
