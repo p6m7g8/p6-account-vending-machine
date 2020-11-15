@@ -1,4 +1,3 @@
-import * as path from 'path';
 import * as ddb from '@aws-cdk/aws-dynamodb';
 import * as kms from '@aws-cdk/aws-kms';
 import * as lambda from '@aws-cdk/aws-lambda-nodejs';
@@ -30,20 +29,17 @@ export class P6avm extends cdk.Resource {
     });
 
     // Lambda: Create Org
-    const createOrg = new lambda.NodejsFunction(this, 'lambda/org/create', {
-      entry: path.join(__dirname, '../resources/lambda/org-create.ts'),
+    const createOrg = new lambda.NodejsFunction(this, 'org-create', {
       description: 'Creates the Organization',
     });
 
     // Lambda: Create Account
-    const createAccount = new lambda.NodejsFunction(this, 'lambda/account/create', {
-      entry: path.join(__dirname, '../resources/lambda/account-create.ts'),
+    const createAccount = new lambda.NodejsFunction(this, 'account-create', {
       description: 'Creates an Account',
     });
 
     // Lambda: Provision Account
-    const provisionAccount = new lambda.NodejsFunction(this, 'lambda/account/provision', {
-      entry: path.join(__dirname, '../resources/lambda/account-provision.ts'),
+    const provisionAccount = new lambda.NodejsFunction(this, 'account-provision', {
       description: 'Provisions an Account',
     });
 
