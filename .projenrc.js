@@ -21,6 +21,10 @@ const project = new AwsCdkTypeScriptApp({
     '@aws-cdk/custom-resources',
   ],
 
+  devDeps: [
+    'parcel@2.0.0-beta.1',
+  ],
+
   codeCov: true,
 
 

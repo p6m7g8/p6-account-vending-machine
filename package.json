@@ -41,6 +41,7 @@
     "eslint-plugin-import": "^2.22.1",
     "jest": "^26.6.3",
     "json-schema": "^0.2.5",
+    "parcel": "2.0.0-beta.1",
     "projen": "^0.3.168",
     "standard-version": "^9.0.0",
     "ts-jest": "^26.4.4",
