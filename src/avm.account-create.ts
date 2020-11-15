@@ -1,10 +1,21 @@
+import { Handler, Context, Callback } from 'aws-lambda';
 
+interface AccountCreateResponse {
+  statusCode: number;
+  body: string;
+}
 
-export function handler(event: any, context: any, callback: (...args: any[]) => void) {
-
-  // just to get started you can log the event, this will cause issues
-  // if you start using API gateway with binary content.
+const accountCreate: Handler = (event: any, context: Context, callback: Callback) => {
   console.log({ event });
 
-  callback();
-}
+  const response: AccountCreateResponse = {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'hooray!',
+    }),
+  };
+
+  callback(undefined, response);
+};
+
+export { accountCreate };

@@ -27,6 +27,10 @@ const project = new AwsCdkTypeScriptApp({
     'parcel@2.0.0-beta.1',
   ],
 
+  deps: [
+    'aws-lambda',
+  ],
+
   codeCov: true,
 
 
