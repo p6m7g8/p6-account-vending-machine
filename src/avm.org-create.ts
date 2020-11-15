@@ -5,7 +5,7 @@ interface OrgCreateResponse {
   body: string;
 }
 
-const orgCreate: Handler = (event: any, context: Context, callback: Callback) => {
+const handler: Handler = (event: any, context: Context, callback: Callback) => {
   console.log({ event });
 
   const response: OrgCreateResponse = {
@@ -18,4 +18,4 @@ const orgCreate: Handler = (event: any, context: Context, callback: Callback) =>
   callback(undefined, response);
 };
 
-export { orgCreate };
+export { handler };
