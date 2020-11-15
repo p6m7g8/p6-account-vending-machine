@@ -1,6 +1,21 @@
-export function handler(event: any, context: any, callback: (...args: any[]) => void) {
+import { Handler, Context, Callback } from 'aws-lambda';
 
+interface OrgCreateResponse {
+  statusCode: number;
+  body: string;
+}
+
+const orgCreate: Handler = (event: any, context: Context, callback: Callback) => {
   console.log({ event });
 
-  callback();
-}
+  const response: OrgCreateResponse = {
+    statusCode: 200,
+    body: JSON.stringify({
+      message: 'hooray!',
+    }),
+  };
+
+  callback(undefined, response);
+};
+
+export { orgCreate };
