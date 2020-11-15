@@ -24,6 +24,7 @@ const project = new AwsCdkTypeScriptApp({
   ],
 
   devDeps: [
+    '@types/aws-lambda',
     'parcel@2.0.0-beta.1',
   ],
 
@@ -32,7 +33,6 @@ const project = new AwsCdkTypeScriptApp({
   ],
 
   codeCov: true,
-
 
   /* AwsCdkTypeScriptAppOptions */
   // appEntrypoint: "main.ts",                                                 /* The CDK app's entrypoint (relative to the source directory, which is "src" by default). */
