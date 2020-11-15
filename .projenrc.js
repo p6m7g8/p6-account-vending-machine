@@ -7,6 +7,8 @@ const project = new AwsCdkTypeScriptApp({
   name: "p6-account-vending-machine",
   repository: "https://github.com/p6m7g8/p6-account-vending-machine.git",
 
+  appEntrypoint: "avm.ts",
+
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
   cdkDependencies: [
