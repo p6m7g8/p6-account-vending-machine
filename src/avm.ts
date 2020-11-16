@@ -10,29 +10,49 @@ import * as cdk from '@aws-cdk/core';
  * Account Vending Machine Properties
  */
 export interface IP6avmProps {
-
+  /**
+   * @default undefined
+   */
+  keyTable?: kms.IKey;
 }
 
 /**
  * The Account Vending Machine
  */
 export class P6avm extends cdk.Resource {
-  constructor(scope: cdk.Construct, id: string, props: IP6avmProps = {}) {
-    super(scope, id, props);
+  readonly keyTable: kms.IKey;
 
-    const keyTable = new kms.Key(this, 'kms/ddb/tables/accounts', {
+  /**
+   *
+   * @param scope
+   * @param id
+   * @param props
+   */
+  constructor(scope: cdk.Construct, id: string, props: IP6avmProps = {}) {
+    super(scope, id);
+
+    /**
+     *
+     */
+    this.keyTable = props.keyTable ?? new kms.Key(this, 'kms/ddb/tables/accounts', {
       alias: 'p6/avm/account/key',
       description: 'Account Vending Machine DDB Accounts Table',
       enableKeyRotation: true,
     });
 
+    /**
+     *
+     */
     const accountsTable = new ddb.Table(this, 'ddb/tables/accounts', {
       partitionKey: { name: 'alias', type: ddb.AttributeType.STRING },
       billingMode: ddb.BillingMode.PAY_PER_REQUEST,
       encryption: ddb.TableEncryption.CUSTOMER_MANAGED,
-      encryptionKey: keyTable,
+      encryptionKey: this.keyTable,
     });
 
+    /**
+     *
+     */
     const orgCreatePolicy = new iam.PolicyStatement({
       actions: [
         'organizations:CreateOrganization',
@@ -45,6 +65,9 @@ export class P6avm extends cdk.Resource {
     });
     createOrg.addToRolePolicy(orgCreatePolicy);
 
+    /**
+     *
+     */
     const accountCreatePolicy = new iam.PolicyStatement({
       actions: [
         'organizations:CreateAccount',
@@ -57,10 +80,16 @@ export class P6avm extends cdk.Resource {
     });
     createAccount.addToRolePolicy(accountCreatePolicy);
 
+    /**
+     *
+     */
     const provisionAccount = new lambda.NodejsFunction(this, 'account-provision', {
       description: 'Provisions an Account',
     });
 
+    /**
+     *
+     */
     const createOrgJob = new tasks.LambdaInvoke(this, 'tasks/org/create', {
       lambdaFunction: createOrg,
       outputPath: '$.StatusCode',
@@ -75,6 +104,9 @@ export class P6avm extends cdk.Resource {
       outputPath: '$.StatusCode',
     });
 
+    /**
+     *
+     */
     const wait = new sfn.Wait(this, 'Wait', {
       time: sfn.WaitTime.secondsPath('$.waitSeconds'),
     });
@@ -83,6 +115,9 @@ export class P6avm extends cdk.Resource {
       cause: 'Something went wrong',
     });
 
+    /**
+     *
+     */
     const orgChain = sfn.Chain.start(createOrgJob);
     const accountChain = sfn.Chain.start(createAccountJob)
       .next(wait)
@@ -91,6 +126,9 @@ export class P6avm extends cdk.Resource {
         .when(sfn.Condition.stringEquals('$.status', 'SUCCEEDED'), provisionAccountJob)
         .otherwise(wait));
 
+    /**
+     *
+     */
     const orgMachine = new sfn.StateMachine(this, 'machines/org', {
       definition: orgChain,
       tracingEnabled: true,
@@ -103,17 +141,31 @@ export class P6avm extends cdk.Resource {
       timeout: cdk.Duration.minutes(2),
     });
 
+    /**
+     *
+     */
     accountsTable.grantReadWriteData(orgMachine.role);
     accountsTable.grantReadWriteData(accountMachine.role);
   }
 }
 
+/**
+ *
+ */
 export class MyStack extends cdk.Stack {
+  /**
+   *
+   * @param scope
+   * @param id
+   * @param props
+   */
   constructor(scope: cdk.Construct, id: string, props: cdk.StackProps = {}) {
     super(scope, id, props);
 
+    /**
+     *
+     */
     new P6avm(this, 'p6/avm');
-
   }
 }
 

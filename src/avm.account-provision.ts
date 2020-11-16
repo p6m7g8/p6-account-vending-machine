@@ -13,6 +13,9 @@ const org: AWS.Organizations = new AWS.Organizations({
  */
 function p6_avm_account_provision(): void {
 
+  if (org) {
+    console.log(org);
+  }
 }
 
 /**
