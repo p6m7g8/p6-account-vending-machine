@@ -1,26 +1,31 @@
 import * as ddb from '@aws-cdk/aws-dynamodb';
+import * as iam from '@aws-cdk/aws-iam';
 import * as kms from '@aws-cdk/aws-kms';
 import * as lambda from '@aws-cdk/aws-lambda-nodejs';
 import * as sfn from '@aws-cdk/aws-stepfunctions';
 import * as tasks from '@aws-cdk/aws-stepfunctions-tasks';
 import * as cdk from '@aws-cdk/core';
 
+/**
+ * Account Vending Machine Properties
+ */
 export interface IP6avmProps {
 
 }
 
+/**
+ * The Account Vending Machine
+ */
 export class P6avm extends cdk.Resource {
   constructor(scope: cdk.Construct, id: string, props: IP6avmProps = {}) {
     super(scope, id, props);
 
-    // Encryption Keys
     const keyTable = new kms.Key(this, 'kms/ddb/tables/accounts', {
       alias: 'p6/avm/account/key',
       description: 'Account Vending Machine DDB Accounts Table',
       enableKeyRotation: true,
     });
 
-    // DynamoDB Table
     const accountsTable = new ddb.Table(this, 'ddb/tables/accounts', {
       partitionKey: { name: 'alias', type: ddb.AttributeType.STRING },
       billingMode: ddb.BillingMode.PAY_PER_REQUEST,
@@ -28,53 +33,74 @@ export class P6avm extends cdk.Resource {
       encryptionKey: keyTable,
     });
 
-    // Lambda: Create Org
+    const orgCreatePolicy = new iam.PolicyStatement({
+      actions: [
+        'organizations:CreateOrganization',
+      ],
+      resources: ['*'],
+      effect: iam.Effect.ALLOW,
+    });
     const createOrg = new lambda.NodejsFunction(this, 'org-create', {
       description: 'Creates the Organization',
     });
+    createOrg.addToRolePolicy(orgCreatePolicy);
 
-    // Lambda: Create Account
+    const accountCreatePolicy = new iam.PolicyStatement({
+      actions: [
+        'organizations:CreateAccount',
+      ],
+      resources: ['*'],
+      effect: iam.Effect.ALLOW,
+    });
     const createAccount = new lambda.NodejsFunction(this, 'account-create', {
       description: 'Creates an Account',
     });
+    createAccount.addToRolePolicy(accountCreatePolicy);
 
-    // Lambda: Provision Account
     const provisionAccount = new lambda.NodejsFunction(this, 'account-provision', {
       description: 'Provisions an Account',
     });
 
-    // Tasks
     const createOrgJob = new tasks.LambdaInvoke(this, 'tasks/org/create', {
       lambdaFunction: createOrg,
-      outputPath: '$.STATUS',
+      outputPath: '$.StatusCode',
     });
-
     const createAccountJob = new tasks.LambdaInvoke(this, 'tasks/account/create', {
       lambdaFunction: createAccount,
-      outputPath: '$.STATUS',
+      outputPath: '$.StatusCode',
     });
-
     const provisionAccountJob = new tasks.LambdaInvoke(this, 'tasks/account/provision', {
       lambdaFunction: provisionAccount,
       inputPath: '$.AccountConfig',
-      outputPath: '$.STATUS',
+      outputPath: '$.StatusCode',
     });
 
-    // Chains
+    const wait = new sfn.Wait(this, 'Wait', {
+      time: sfn.WaitTime.secondsPath('$.waitSeconds'),
+    });
+    const jobFailed = new sfn.Fail(this, 'Fail', {
+      error: 'WorkflowFailure',
+      cause: 'Something went wrong',
+    });
+
     const orgChain = sfn.Chain.start(createOrgJob);
-
     const accountChain = sfn.Chain.start(createAccountJob)
-      .next(provisionAccountJob);
+      .next(wait)
+      .next(new sfn.Choice(this, 'Account Creation Complete?')
+        .when(sfn.Condition.stringEquals('$.status', 'FAILED'), jobFailed)
+        .when(sfn.Condition.stringEquals('$.status', 'SUCCEEDED'), provisionAccountJob)
+        .otherwise(wait));
 
-    // Machines
     const orgMachine = new sfn.StateMachine(this, 'machines/org', {
       definition: orgChain,
       tracingEnabled: true,
+      timeout: cdk.Duration.minutes(1),
     });
 
     const accountMachine = new sfn.StateMachine(this, 'machines/account', {
       definition: accountChain,
       tracingEnabled: true,
+      timeout: cdk.Duration.minutes(2),
     });
 
     accountsTable.grantReadWriteData(orgMachine.role);
