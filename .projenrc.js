@@ -123,7 +123,8 @@ const project = new AwsCdkTypeScriptApp({
   // typescriptVersion: "^3.9.5",                                              /* TypeScript version to use. */
 });
 
-project.mergify.addRule({
+
+project.github.addMergifyRules({
   name: 'Label core contributions',
   actions: {
     label: {
@@ -136,7 +137,7 @@ project.mergify.addRule({
   ],
 });
 
-project.mergify.addRule({
+project.github.addMergifyRules({
   name: 'Label auto-merge for core',
   actions: {
     label: {
