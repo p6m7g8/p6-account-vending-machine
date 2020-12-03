@@ -1,13 +1,13 @@
 const { AwsCdkTypeScriptApp } = require('projen');
 
 const project = new AwsCdkTypeScriptApp({
-  authorAddress: "pgollucci@p6m7g8.com",
-  authorName: "Philip M. Gollucci",
-  cdkVersion: "1.75.0",
-  name: "p6-account-vending-machine",
-  repository: "https://github.com/p6m7g8/p6-account-vending-machine.git",
+  authorAddress: 'pgollucci@p6m7g8.com',
+  authorName: 'Philip M. Gollucci',
+  cdkVersion: '1.75.0',
+  name: 'p6-account-vending-machine',
+  repository: 'https://github.com/p6m7g8/p6-account-vending-machine.git',
 
-  appEntrypoint: "avm.ts",
+  appEntrypoint: 'avm.ts',
   docgen: true,
 
   codeCov: true,
@@ -128,12 +128,12 @@ project.github.addMergifyRules({
   name: 'Label core contributions',
   actions: {
     label: {
-      add: ['contribution/core']
-    }
+      add: ['contribution/core'],
+    },
   },
   conditions: [
     'author~=^(pgollucci)$',
-    'label!=contribution/core'
+    'label!=contribution/core',
   ],
 });
 
@@ -141,12 +141,12 @@ project.github.addMergifyRules({
   name: 'Label auto-merge for core',
   actions: {
     label: {
-      add: ['auto-merge']
-    }
+      add: ['auto-merge'],
+    },
   },
   conditions: [
     'label=contribution/core',
-    'label!=auto-merge'
+    'label!=auto-merge',
   ],
 });
 
