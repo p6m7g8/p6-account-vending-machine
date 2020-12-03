@@ -44,6 +44,7 @@ junit.xml
 cdk.out/
 .cdk.staging/
 .parcel-cache/
+!/.projen/tasks.json
 !/package.json
 !/.npmignore
 !/LICENSE
@@ -56,6 +57,7 @@ cdk.out/
 !/.github/dependabot.yml
 !/.github/workflows/projenupgrade.yml
 !/.github/pull_request_template.md
+!/.github/workflows/rebuild-bot.yml
 !/tsconfig.json
 !/src
 !/tsconfig.jest.json
