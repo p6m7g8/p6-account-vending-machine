@@ -3,7 +3,7 @@ const { AwsCdkTypeScriptApp } = require('projen');
 const project = new AwsCdkTypeScriptApp({
   authorAddress: 'pgollucci@p6m7g8.com',
   authorName: 'Philip M. Gollucci',
-  cdkVersion: '1.73.0',
+  cdkVersion: '1.76.0',
   name: 'p6-account-vending-machine',
   repository: 'https://github.com/p6m7g8/p6-account-vending-machine.git',
 
@@ -27,7 +27,7 @@ const project = new AwsCdkTypeScriptApp({
 
   devDeps: [
     '@types/aws-lambda',
-    'parcel@2.0.0-beta.1',
+    'esbuild@^0',
   ],
 
   deps: [
