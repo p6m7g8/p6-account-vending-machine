@@ -1700,9 +1700,9 @@ aws-lambda@^1.0.6:
     watchpack "^2.0.0-beta.10"
 
 aws-sdk@*, aws-sdk@^2.792.0, aws-sdk@^2.799.0:
-  version "2.802.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.802.0.tgz#7215be2437c196f1b0b39a10feffdc1d1b980a62"
-  integrity sha512-PfjBr5Ag4PdcEYPrfMclVWk85kFSJNe7qllZBE8RhYNu+K+Z2pveKfYkC5mqYoKEYIQyI9by9N47F+Tqm1GXtg==
+  version "2.803.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.803.0.tgz#054b850ec8ceb3b6ccb18d2a4cc6139ef3fbb7ef"
+  integrity sha512-rcjwbslKEtoOcxeskwaF6lVUgOxnEqVIeufzO+W8gnAzEaUamunqCAFHsqCFldF5efkHISCDbTKLhMHcEZ6yyg==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -2408,6 +2408,11 @@ crc32-stream@^4.0.1:
     crc-32 "^1.2.0"
     readable-stream "^3.4.0"
 
+create-require@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/create-require/-/create-require-1.1.1.tgz#c1d7e8f1e5f6cfc9ff65f9cd352d37348756c333"
+  integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
+
 cross-spawn@^6.0.0:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -2767,9 +2772,9 @@ es5-ext@0.8.x:
   integrity sha1-q6jZ4ZQ6iVrJaDemKjmz9V7NlKs=
 
 esbuild@^0:
-  version "0.8.17"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.17.tgz#1c16c6d5988dcfdcf27a7e1612b7fd05e1477c54"
-  integrity sha512-ReHap+Iyn5BQF0B8F3xrLwu+j57ri5uDUw2ej9XTPAuFDebYiWwRzBY4jhF610bklveXLbCGim/8/2wQKQlu1w==
+  version "0.8.18"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.18.tgz#4a8c70df8fffa27164a26daa3ec58ce6f1315446"
+  integrity sha512-EPbCSr7Ems1loeoy1faUGnJOwTwSrGcoYVQ4f4T4JMKjxJxrWAg+zqXkZK7GvqxfvokPp3HV6Raqn6rqAuW7+Q==
 
 escalade@^3.1.1:
   version "3.1.1"
@@ -6676,11 +6681,12 @@ ts-jest@^26.4.4:
     yargs-parser "20.x"
 
 ts-node@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.0.0.tgz#e7699d2a110cc8c0d3b831715e417688683460b3"
-  integrity sha512-/TqB4SnererCDR/vb4S/QvSZvzQMJN8daAslg7MeaiHvD8rDZsSfXmNeNumyZZzMned72Xoq/isQljYSt8Ynfg==
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-9.1.0.tgz#95eae4c6d0f94f2545884078e1eb1b14d2155639"
+  integrity sha512-0yqcL4sgruCvM+w64LiAfNJo6+lHfCYc5Ajj4yiLNkJ9oZ2HWaa+Kso7htYOOxVQ7+csAjdUjffOe9PIqC4pMg==
   dependencies:
     arg "^4.1.0"
+    create-require "^1.1.0"
     diff "^4.0.1"
     make-error "^1.1.1"
     source-map-support "^0.5.17"
