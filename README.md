@@ -42,4 +42,4 @@ Deploys an AWS CDK based Account Vending Machine (AVM) - Serverless!
 
 ## Author
 
-Philip M. Gollucci <pgollucci@p6m7g8.com>
+Philip M. Gollucci
