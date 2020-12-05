@@ -18,7 +18,6 @@
     "projen:upgrade": "npx projen projen:upgrade",
     "watch": "npx projen watch",
     "eslint": "npx projen eslint",
-    "docgen": "npx projen docgen",
     "synth": "npx projen synth",
     "deploy": "npx projen deploy",
     "destroy": "npx projen destroy",
@@ -47,7 +46,6 @@
     "standard-version": "^9.0.0",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
-    "typedoc": "^0.19.2",
     "typescript": "^3.9.5"
   },
   "peerDependencies": {},
