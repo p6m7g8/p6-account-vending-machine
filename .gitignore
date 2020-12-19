@@ -45,6 +45,7 @@ cdk.out/
 .cdk.staging/
 .parcel-cache/
 !/.projen/tasks.json
+!/.gitpod.yml
 !/package.json
 !/.npmignore
 !/LICENSE
