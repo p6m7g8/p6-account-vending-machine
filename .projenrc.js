@@ -9,7 +9,7 @@ const project = new AwsCdkTypeScriptApp({
 
   appEntrypoint: 'avm.ts',
   // docgen: true,
-
+  gitpod: true,
   codeCov: true,
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
@@ -148,6 +148,12 @@ project.github.addMergifyRules({
     'label=contribution/core',
     'label!=auto-merge',
   ],
+});
+
+project.gitpod.addTasks({
+  name: 'Setup',
+  init: 'yarn install',
+  command: 'npx projen build',
 });
 
 project.synth();
