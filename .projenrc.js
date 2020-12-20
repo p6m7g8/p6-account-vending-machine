@@ -8,10 +8,10 @@ const project = new AwsCdkTypeScriptApp({
   repository: 'https://github.com/p6m7g8/p6-account-vending-machine.git',
 
   appEntrypoint: 'avm.ts',
-  // docgen: true,
-  gitpod: true,
-  codeCov: true,
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+  codeCov: true,
+  docgen: true,
+  gitpod: true,
 
   cdkDependencies: [
     '@aws-cdk/aws-dynamodb',
