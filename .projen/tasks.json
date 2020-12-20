@@ -33,6 +33,9 @@
           "spawn": "compile"
         },
         {
+          "spawn": "docgen"
+        },
+        {
           "spawn": "synth"
         }
       ]
@@ -112,6 +115,16 @@
       "steps": [
         {
           "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test .projenrc.js"
+        }
+      ]
+    },
+    "docgen": {
+      "name": "docgen",
+      "category": "20.release",
+      "description": "Generate TypeScript API reference docs/",
+      "steps": [
+        {
+          "exec": "typedoc --out docs/"
         }
       ]
     },
