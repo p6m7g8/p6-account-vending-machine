@@ -1,9 +1,10 @@
+
 const { AwsCdkTypeScriptApp } = require('projen');
 
 const project = new AwsCdkTypeScriptApp({
   authorAddress: 'pgollucci@p6m7g8.com',
   authorName: 'Philip M. Gollucci',
-  cdkVersion: '1.80.0',
+  cdkVersion: '1.82.0',
   name: 'p6-account-vending-machine',
   repository: 'https://github.com/p6m7g8/p6-account-vending-machine.git',
 

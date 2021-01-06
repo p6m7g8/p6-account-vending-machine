@@ -6,10 +6,13 @@
 /test-reports/
 junit.xml
 /coverage
-/test
 /.mergify.yml
+/test
 /tsconfig.json
+!/lib
 /src
+!/lib/**/*.js
+!/lib/**/*.d.ts
 dist
 /.github
 /.vscode
@@ -18,6 +21,3 @@ dist
 /.eslintrc.json
 cdk.out/
 .cdk.staging/
-!/lib
-!/lib/**/*.js
-!/lib/**/*.d.ts
