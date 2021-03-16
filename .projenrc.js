@@ -9,10 +9,13 @@ const project = new AwsCdkTypeScriptApp({
   repository: 'https://github.com/p6m7g8/p6-account-vending-machine.git',
 
   appEntrypoint: 'avm.ts',
+
+  defaultReleaseBranch: 'master',
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
+
   // docgen: true,
   gitpod: true,
   codeCov: true,
-  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
   cdkDependencies: [
     '@aws-cdk/aws-dynamodb',
@@ -124,6 +127,7 @@ const project = new AwsCdkTypeScriptApp({
   // typescriptVersion: "^3.9.5",                                              /* TypeScript version to use. */
 });
 
+project.gitignore.exclude('.node-version');
 
 project.github.addMergifyRules({
   name: 'Label core contributions',
