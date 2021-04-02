@@ -561,11 +561,11 @@
     constructs "^3.3.69"
 
 "@aws-cdk/aws-servicecatalog@^1.95.2":
-  version "1.95.2"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-servicecatalog/-/aws-servicecatalog-1.95.2.tgz#e9d8f50f1249c3e3e40cdbfe708fa853c64ebfdc"
-  integrity sha512-23M90aAPURN+lsG0JtABiZ/c1JSQJFJWDiSTlDDmG7L1cXG2RV2HL8xZ5PGkL2/adRiDkqIfaJko+X0EWGiXxA==
+  version "1.96.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-servicecatalog/-/aws-servicecatalog-1.96.0.tgz#eaaed536146d0941d9300c94e43b0971c3273fa9"
+  integrity sha512-oLK3OT57zY60+SHasQQ3ZyYTuvst0MGMFtRw9gYiuIxZeGYDMWgSOjTOSg+m3N+l4NY8ggYW8an5YveDzX+rUw==
   dependencies:
-    "@aws-cdk/core" "1.95.2"
+    "@aws-cdk/core" "1.96.0"
     constructs "^3.3.69"
 
 "@aws-cdk/aws-servicediscovery@1.95.2":
@@ -730,7 +730,7 @@
     string-width "^4.2.2"
     table "^6.0.9"
 
-"@aws-cdk/core@1.95.2", "@aws-cdk/core@^1.95.2":
+"@aws-cdk/core@1.95.2":
   version "1.95.2"
   resolved "https://registry.yarnpkg.com/@aws-cdk/core/-/core-1.95.2.tgz#07e37135b7578a67fb6c7a221f1512f96d428713"
   integrity sha512-9J6UmN14E2iH5pRMNv03Yc5wTVedJqdU15aDIqnO8DZM+ZBjZOZFcl0imfPGTCd244un6SzLDaRFh/rQw5gomQ==
@@ -738,6 +738,20 @@
     "@aws-cdk/cloud-assembly-schema" "1.95.2"
     "@aws-cdk/cx-api" "1.95.2"
     "@aws-cdk/region-info" "1.95.2"
+    "@balena/dockerignore" "^1.0.2"
+    constructs "^3.3.69"
+    fs-extra "^9.1.0"
+    ignore "^5.1.8"
+    minimatch "^3.0.4"
+
+"@aws-cdk/core@1.96.0", "@aws-cdk/core@^1.95.2":
+  version "1.96.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/core/-/core-1.96.0.tgz#7a3984c28bce6ff8e2b6d9d732b556b3edd7bfc6"
+  integrity sha512-W8pAE2n9WgBDi0uHe0rUb95sVUe+rIe8pWZuHq60HhD5Omjb7qVxV5D95Z8TOkOrbLbCYJEUjsLV/ka0iqMOnQ==
+  dependencies:
+    "@aws-cdk/cloud-assembly-schema" "1.96.0"
+    "@aws-cdk/cx-api" "1.96.0"
+    "@aws-cdk/region-info" "1.96.0"
     "@balena/dockerignore" "^1.0.2"
     constructs "^3.3.69"
     fs-extra "^9.1.0"
