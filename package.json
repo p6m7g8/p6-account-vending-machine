@@ -46,6 +46,7 @@
     "standard-version": "^9",
     "ts-jest": "^26.4.4",
     "ts-node": "^9.0.0",
+    "typedoc": "^0.20.35",
     "typescript": "^3.9.5"
   },
   "dependencies": {
