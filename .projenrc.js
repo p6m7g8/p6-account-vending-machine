@@ -161,4 +161,20 @@ project.gitpod.addTasks({
   command: 'npx projen build',
 });
 
+project.github.addMergifyRules({
+  name: 'Label auto-merge snyk-bot',
+  actions: {
+    merge: {
+      method: 'squash',
+      commit_message: 'title+body',
+      strict: 'smart',
+      strict_method: 'merge',
+    },
+  },
+  conditions: [
+    'author=snyk-bot',
+    'status-success=build',
+  ],
+});
+
 project.synth();
