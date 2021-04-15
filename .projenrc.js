@@ -15,7 +15,6 @@ const project = new AwsCdkTypeScriptApp({
 
   // docgen: true,
   gitpod: true,
-  codeCov: true,
 
   cdkDependencies: [
     '@aws-cdk/aws-dynamodb',
