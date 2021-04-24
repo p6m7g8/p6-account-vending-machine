@@ -9,11 +9,10 @@ const project = new AwsCdkTypeScriptApp({
   repository: 'https://github.com/p6m7g8/p6-account-vending-machine.git',
 
   appEntrypoint: 'avm.ts',
-
-  defaultReleaseBranch: 'master',
+  defaultReleaseBranch: 'main',
   projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
 
-  // docgen: true,
+  docgen: true,
   gitpod: true,
 
   cdkDependencies: [

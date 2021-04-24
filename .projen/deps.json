@@ -62,7 +62,7 @@
     },
     {
       "name": "projen",
-      "version": "^0.17.44",
+      "version": "^0.17.62",
       "type": "build"
     },
     {
@@ -76,6 +76,11 @@
     },
     {
       "name": "ts-node",
+      "type": "build"
+    },
+    {
+      "name": "typedoc",
+      "version": "^0.20.35",
       "type": "build"
     },
     {
