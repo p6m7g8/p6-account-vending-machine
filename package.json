@@ -16,7 +16,6 @@
     "test:update": "npx projen test:update",
     "projen:upgrade": "npx projen projen:upgrade",
     "eslint": "npx projen eslint",
-    "docgen": "npx projen docgen",
     "synth": "npx projen synth",
     "deploy": "npx projen deploy",
     "destroy": "npx projen destroy",
