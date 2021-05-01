@@ -40,7 +40,7 @@ const project = new AwsCdkTypeScriptApp({
 
 project.gitignore.exclude('.node-version');
 
-project.github.addMergifyRules({
+project.github.mergify.addRule({
   name: 'Label core contributions',
   actions: {
     label: {
@@ -53,7 +53,7 @@ project.github.addMergifyRules({
   ],
 });
 
-project.github.addMergifyRules({
+project.github.mergify.addRule({
   name: 'Label auto-merge for core',
   actions: {
     label: {
@@ -66,13 +66,8 @@ project.github.addMergifyRules({
   ],
 });
 
-project.gitpod.addTasks({
-  name: 'Setup',
-  init: 'yarn install',
-  command: 'npx projen build',
-});
 
-project.github.addMergifyRules({
+project.github.mergify.addRule({
   name: 'Label auto-merge snyk-bot',
   actions: {
     merge: {
@@ -86,6 +81,12 @@ project.github.addMergifyRules({
     'author=snyk-bot',
     'status-success=build',
   ],
+});
+
+project.gitpod.addTasks({
+  name: 'Setup',
+  init: 'yarn install',
+  command: 'npx projen build',
 });
 
 project.synth();
