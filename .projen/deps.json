@@ -66,13 +66,7 @@
       "type": "build"
     },
     {
-      "name": "npm-check-updates",
-      "version": "^11",
-      "type": "build"
-    },
-    {
       "name": "projen",
-      "version": "^0.20.11",
       "type": "build"
     },
     {
@@ -130,11 +124,6 @@
     },
     {
       "name": "@aws-cdk/aws-stepfunctions",
-      "version": "^1.104.0",
-      "type": "runtime"
-    },
-    {
-      "name": "@aws-cdk/core",
       "version": "^1.104.0",
       "type": "runtime"
     },
