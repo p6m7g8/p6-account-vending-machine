@@ -30,8 +30,8 @@
     "@types/aws-lambda": "^8.10.77",
     "@types/jest": "^26.0.23",
     "@types/node": "^10.17.0",
-    "@typescript-eslint/eslint-plugin": "^4.28.0",
-    "@typescript-eslint/parser": "^4.28.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.1",
+    "@typescript-eslint/parser": "^4.28.1",
     "aws-cdk": "^1.104.0",
     "esbuild": "^0",
     "eslint": "^7.29.0",
@@ -60,7 +60,7 @@
     "@aws-cdk/core": "^1.104.0",
     "@aws-cdk/custom-resources": "^1.104.0",
     "aws-lambda": "^1.0.6",
-    "aws-sdk": "^2.933.0"
+    "aws-sdk": "^2.936.0"
   },
   "bundledDependencies": [],
   "license": "Apache-2.0",
